@@ -5,6 +5,7 @@ public class CatCatcher : MonoBehaviour
     [SerializeField] private PlayerController _playerController;
     private GameObject player_Cat;
     private CharacterController _characterController;
+    private CameraManager cm; 
 
     [Header("Settings")]
     public float baseRadius = 1.0f;
@@ -13,6 +14,8 @@ public class CatCatcher : MonoBehaviour
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        cm = Managers.Instance.Get<CameraManager>();
+
 
         if (_playerController == null)
         {
@@ -31,10 +34,18 @@ public class CatCatcher : MonoBehaviour
             Debug.Log("고양이 잡았다!");
             CatCollectParentsBySphere(other);
             UpdateCharacterControllerRadius();
+
+            float newRadius = baseRadius + (player_Cat.transform.childCount * radiusGrowthPerCat);
+            _characterController.radius = newRadius;
+
+            if (cm != null)
+            {
+                 cm.UpdateCameraSetting(_characterController.radius);
+            }
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmos() 
     {
         if (_characterController == null)
             _characterController = GetComponent<CharacterController>();

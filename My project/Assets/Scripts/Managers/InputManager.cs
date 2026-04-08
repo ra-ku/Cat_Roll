@@ -28,12 +28,6 @@ public class InputManager : IManager, IUpdater
         if (_actions == null) return;
 
         MoveInput = _moveAction.ReadValue<Vector2>();
-
-        if (MoveInput.sqrMagnitude > 0)
-        {
-            Debug.Log($"입력 중: {MoveInput}");
-        }
-
     }
 
     public void Dispose()

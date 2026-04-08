@@ -38,4 +38,9 @@ public class CameraManager : IManager, IUpdater
         int next = ((int)_currentState + 1) % 2;
         ChangeState((CameraRig.CameraState)next);
     }
+
+    public void UpdateCameraSetting(float currentCatSize)
+    {
+        _cameraRig.UpdateCameraSettings(currentCatSize);
+    }
 }

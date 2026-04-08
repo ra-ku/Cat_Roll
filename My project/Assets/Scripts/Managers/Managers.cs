@@ -13,6 +13,7 @@ public class Managers : MonoBehaviour
 
     [Header("Boot Options")]
     [SerializeField] private bool autoStartNewGameOnBoot = true;
+
     private void Awake()
     {
         if( Instance != null && Instance != this)
@@ -25,11 +26,12 @@ public class Managers : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         // Engine
-
+        Register(new RandomManager());
+        Register(new InputManager());
 
         // Game
         Register(new CameraManager());
-        Register(new InputManager());
+        Register(new CatSpawnManager());        
 
         InitAll();
     }
