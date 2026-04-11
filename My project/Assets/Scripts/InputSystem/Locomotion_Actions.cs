@@ -100,6 +100,15 @@ public partial class @Locomotion_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MoveSkill_Rush"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ab195d7-40ea-4f26-b946-9068c21f2a77"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -157,6 +166,17 @@ public partial class @Locomotion_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""MoveAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3862d64-7689-4632-ae0c-e4eb88c66566"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveSkill_Rush"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -166,6 +186,7 @@ public partial class @Locomotion_Actions: IInputActionCollection2, IDisposable
         // Move
         m_Move = asset.FindActionMap("Move", throwIfNotFound: true);
         m_Move_MoveAction = m_Move.FindAction("MoveAction", throwIfNotFound: true);
+        m_Move_MoveSkill_Rush = m_Move.FindAction("MoveSkill_Rush", throwIfNotFound: true);
     }
 
     ~@Locomotion_Actions()
@@ -247,6 +268,7 @@ public partial class @Locomotion_Actions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Move;
     private List<IMoveActions> m_MoveActionsCallbackInterfaces = new List<IMoveActions>();
     private readonly InputAction m_Move_MoveAction;
+    private readonly InputAction m_Move_MoveSkill_Rush;
     /// <summary>
     /// Provides access to input actions defined in input action map "Move".
     /// </summary>
@@ -262,6 +284,10 @@ public partial class @Locomotion_Actions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Move/MoveAction".
         /// </summary>
         public InputAction @MoveAction => m_Wrapper.m_Move_MoveAction;
+        /// <summary>
+        /// Provides access to the underlying input action "Move/MoveSkill_Rush".
+        /// </summary>
+        public InputAction @MoveSkill_Rush => m_Wrapper.m_Move_MoveSkill_Rush;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -291,6 +317,9 @@ public partial class @Locomotion_Actions: IInputActionCollection2, IDisposable
             @MoveAction.started += instance.OnMoveAction;
             @MoveAction.performed += instance.OnMoveAction;
             @MoveAction.canceled += instance.OnMoveAction;
+            @MoveSkill_Rush.started += instance.OnMoveSkill_Rush;
+            @MoveSkill_Rush.performed += instance.OnMoveSkill_Rush;
+            @MoveSkill_Rush.canceled += instance.OnMoveSkill_Rush;
         }
 
         /// <summary>
@@ -305,6 +334,9 @@ public partial class @Locomotion_Actions: IInputActionCollection2, IDisposable
             @MoveAction.started -= instance.OnMoveAction;
             @MoveAction.performed -= instance.OnMoveAction;
             @MoveAction.canceled -= instance.OnMoveAction;
+            @MoveSkill_Rush.started -= instance.OnMoveSkill_Rush;
+            @MoveSkill_Rush.performed -= instance.OnMoveSkill_Rush;
+            @MoveSkill_Rush.canceled -= instance.OnMoveSkill_Rush;
         }
 
         /// <summary>
@@ -352,5 +384,12 @@ public partial class @Locomotion_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMoveAction(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MoveSkill_Rush" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMoveSkill_Rush(InputAction.CallbackContext context);
     }
 }

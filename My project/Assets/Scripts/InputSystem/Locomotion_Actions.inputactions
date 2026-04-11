@@ -14,6 +14,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "MoveSkill_Rush",
+                    "type": "Button",
+                    "id": "6ab195d7-40ea-4f26-b946-9068c21f2a77",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -71,6 +80,17 @@
                     "action": "MoveAction",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a3862d64-7689-4632-ae0c-e4eb88c66566",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveSkill_Rush",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
