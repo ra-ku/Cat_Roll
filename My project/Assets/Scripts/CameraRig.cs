@@ -1,5 +1,5 @@
 using UnityEngine;
-using Unity.Cinemachine; // 최신 버전 네임스페이스
+using Unity.Cinemachine;
 
 public class CameraRig : MonoBehaviour
 {
@@ -22,33 +22,37 @@ public class CameraRig : MonoBehaviour
     [SerializeField] private float _baseDistance = 1.5f;
     [SerializeField] private float _distanceMultiplier = 1.1f;
 
-    [Header("Smoothing")]
-    [SerializeField] private float _smoothSpeed = 5f;
-
     private float _targetFOV;
     private float _targetDistance;
 
-    private CinemachineOrbitalFollow _thirdPersonOrbital;
+    private CinemachineThirdPersonFollow _thirdPersonFollow;
 
     private void Awake()
-    { 
-        _thirdPersonOrbital = thirdPersonCam.GetComponent<CinemachineOrbitalFollow>();
+    {
+        _thirdPersonFollow = thirdPersonCam.GetComponent<CinemachineThirdPersonFollow>();
 
         thirdPersonCam.Lens.FieldOfView = _baseFOV;
-        _thirdPersonOrbital.TargetOffset.z = _baseDistance;
+        if (_thirdPersonFollow != null)
+        {
+            _thirdPersonFollow.CameraDistance = _baseDistance;
+            _thirdPersonFollow.ShoulderOffset = new Vector3(0, 0.6f, 0);
+        }
     }
 
     public void UpdateCameraSettings(float currentRadius)
     {
         _targetFOV = Mathf.Clamp(_baseFOV + (currentRadius * _fovGrowthMultiplier), _baseFOV, _maxFOV);
-        _targetDistance = _baseDistance + -(currentRadius * _distanceMultiplier);
+        _targetDistance = _baseDistance + (currentRadius * _distanceMultiplier);
 
-        Debug.Log($"Fov = {_targetFOV}");
-        Debug.Log($"Distance = {_targetDistance}");
-
-        _thirdPersonOrbital.TargetOffset.z = _targetDistance;
+        if (_thirdPersonFollow != null)
+        {
+            _thirdPersonFollow.CameraDistance = _targetDistance;
+        }
         thirdPersonCam.Lens.FieldOfView = _targetFOV;
+
+        Debug.Log($"Camera Settings Updated - FOV: {_targetFOV}, Distance: {_targetDistance}");
     }
+
 
     public void SetState(CameraState state)
     {

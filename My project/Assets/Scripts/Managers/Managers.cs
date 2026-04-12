@@ -31,6 +31,7 @@ public class Managers : MonoBehaviour
 
         // Game
         Register(new CameraManager());
+        Register(new AttributeManager());
         Register(new CatSpawnManager());        
 
         InitAll();
@@ -54,6 +55,23 @@ public class Managers : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        foreach (var kv in _managers)
+        {
+            if (kv.Value is ILateUpdater lateUpdatable)
+            {
+                try
+                {
+                    lateUpdatable.OnLateUpdate();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[Managers] LateUpdate failed: {kv.Key.Name}\n{e}");
+                }
+            }
+        }
+    }
     public void Register(IManager manager)
     {
         if (manager == null) return;

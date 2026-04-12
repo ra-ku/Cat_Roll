@@ -18,8 +18,7 @@ public class CameraManager : IManager, IUpdater
     }
 
     public void OnUpdate()
-    {
-        // 테스트용: V 키를 누를 때마다 카메라 전환
+    {       
         if (Input.GetKeyDown(KeyCode.V))
         {
             ToggleCamera();
