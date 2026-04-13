@@ -29,12 +29,10 @@ public class CatSpawnManager : IManager
         _randManager = Managers.Instance.Get<RandomManager>();
         _catPrefabs  = Resources.LoadAll<GameObject>("Prefabs/Cats");
 
-        SpawnCat();
-
         Debug.Log("CatSpawnManager Initialized");
     }
 
-    private void SpawnCat()
+    public void SpawnCat()
     {
         if(_catPrefabs.Length == 0)
         {

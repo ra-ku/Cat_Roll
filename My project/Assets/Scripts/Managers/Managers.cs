@@ -11,9 +11,6 @@ public class Managers : MonoBehaviour
 
     private bool _initialized;
 
-    [Header("Boot Options")]
-    [SerializeField] private bool autoStartNewGameOnBoot = true;
-
     private void Awake()
     {
         if( Instance != null && Instance != this)
@@ -32,7 +29,9 @@ public class Managers : MonoBehaviour
         // Game
         Register(new CameraManager());
         Register(new AttributeManager());
-        Register(new CatSpawnManager());        
+        Register(new CatSpawnManager());
+        Register(new GameManager());
+        Register(new SceneManagerEx());
 
         InitAll();
     }

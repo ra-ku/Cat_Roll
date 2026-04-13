@@ -37,6 +37,12 @@ public class CameraRig : MonoBehaviour
             _thirdPersonFollow.CameraDistance = _baseDistance;
             _thirdPersonFollow.ShoulderOffset = new Vector3(0, 0.6f, 0);
         }
+
+        var cameraManager = Managers.Instance.Get<CameraManager>();
+        if (cameraManager != null)
+        {
+            cameraManager.RegisterRig(this);
+        }
     }
 
     public void UpdateCameraSettings(float currentRadius)
@@ -52,7 +58,6 @@ public class CameraRig : MonoBehaviour
 
         Debug.Log($"Camera Settings Updated - FOV: {_targetFOV}, Distance: {_targetDistance}");
     }
-
 
     public void SetState(CameraState state)
     {

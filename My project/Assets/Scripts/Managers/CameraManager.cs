@@ -7,18 +7,16 @@ public class CameraManager : IManager, IUpdater
 
     public void Init()
     {
-        _cameraRig = Object.FindAnyObjectByType<CameraRig>();
+    }
 
-        if (_cameraRig != null)
-        {
-            ChangeState(CameraRig.CameraState.ThirdPerson);
-        }
-
-        Debug.Log("Camera Manager Initialized");
+    public void RegisterRig(CameraRig rig)
+    {
+        _cameraRig = rig;
+        ChangeState(CameraRig.CameraState.ThirdPerson);
     }
 
     public void OnUpdate()
-    {       
+    {
         if (Input.GetKeyDown(KeyCode.V))
         {
             ToggleCamera();
@@ -29,7 +27,6 @@ public class CameraManager : IManager, IUpdater
     {
         _currentState = newState;
         _cameraRig?.SetState(newState);
-        Debug.Log($"Camera Switched to: {newState}");
     }
 
     private void ToggleCamera()
@@ -40,6 +37,6 @@ public class CameraManager : IManager, IUpdater
 
     public void UpdateCameraSetting(float currentCatSize)
     {
-        _cameraRig.UpdateCameraSettings(currentCatSize);
+        _cameraRig?.UpdateCameraSettings(currentCatSize);
     }
 }

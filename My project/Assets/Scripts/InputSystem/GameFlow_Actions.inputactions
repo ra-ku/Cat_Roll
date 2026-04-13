@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "GameFlow_Actions",
+    "maps": [
+        {
+            "name": "StartGame",
+            "id": "50f6fbbc-6537-46ff-9764-f945d4114cf8",
+            "actions": [
+                {
+                    "name": "GameStart",
+                    "type": "Button",
+                    "id": "d3bb4db5-86cf-4f00-9e52-21740a8f2774",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6a22c6be-d150-4464-8868-67e35fc69ce0",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GameStart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

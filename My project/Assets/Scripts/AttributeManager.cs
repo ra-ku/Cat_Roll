@@ -29,22 +29,31 @@ public class AttributeManager : IManager , IUpdater
 {
     [Header("Attributes")]
     private Attribute _playerHp;
+    private Attribute _bossHp;
+
+    [Header("Reference")]
+    private GameManager _gm;
 
     public Attribute PlayerHp => _playerHp;
-
-    bool isStart = false;
+    public Attribute BossHp => _bossHp;
 
     public void Init()
     {
         _playerHp = new Attribute(AttributeType.hp, 100f, 100f);
+        _bossHp = new Attribute(AttributeType.hp, 500f, 500f);
+
+        _gm = Managers.Instance.Get<GameManager>();
 
         Debug.Log("AttributeManager initialized.");
     }
 
     public void OnUpdate()
     {
-        DecreaseAttribute(_playerHp, 0.1f);
-        Debug.Log($"Player HP: {_playerHp._value}");
+        if (_gm._state == GameManager.GameState.Playing)
+        {
+            DecreaseAttribute(_playerHp, 0.1f);
+            Debug.Log($"Player HP: {_playerHp._value}");
+        }
     }
 
     private void DecreaseAttribute(Attribute attribute , float amount)
