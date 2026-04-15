@@ -52,7 +52,6 @@ public class AttributeManager : IManager , IUpdater
         if (_gm._state == GameManager.GameState.Playing)
         {
             DecreaseAttribute(_playerHp, 0.1f);
-            Debug.Log($"Player HP: {_playerHp._value}");
         }
     }
 

@@ -55,8 +55,6 @@ public class CameraRig : MonoBehaviour
             _thirdPersonFollow.CameraDistance = _targetDistance;
         }
         thirdPersonCam.Lens.FieldOfView = _targetFOV;
-
-        Debug.Log($"Camera Settings Updated - FOV: {_targetFOV}, Distance: {_targetDistance}");
     }
 
     public void SetState(CameraState state)

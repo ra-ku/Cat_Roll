@@ -7,6 +7,7 @@ public class CatCatcher : MonoBehaviour
     private CharacterController _characterController;
     private CameraManager cm;
     private AttributeManager attributeManager;
+
     [Header("Settings")]
     public float baseRadius = 1.0f;
     public float radiusGrowthPerCat = 0.1f;
@@ -47,6 +48,15 @@ public class CatCatcher : MonoBehaviour
             if (attributeManager != null)
             {
                 attributeManager.PlayerHp.SetValue(100f);
+            }
+
+            var bossSpawn = Managers.Instance.Get<BossSpawnManager>();
+            if (bossSpawn != null)
+            {
+                if(player_Cat.transform.childCount >= 32)
+                {
+                    bossSpawn.SpawnBoss();
+                }
             }
         }
     }
@@ -93,7 +103,5 @@ public class CatCatcher : MonoBehaviour
 
 
         _characterController.radius = newRadius;
-
-        Debug.Log($"새로운 반지름: {newRadius} (고양이 수: {catCount-2})");
     }
 }

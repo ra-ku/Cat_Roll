@@ -32,6 +32,7 @@ public class Managers : MonoBehaviour
         Register(new CatSpawnManager());
         Register(new GameManager());
         Register(new SceneManagerEx());
+        Register(new BossSpawnManager());
 
         InitAll();
     }
